@@ -8,4 +8,4 @@ Unused references and reference to the Winform is removed for the sake of portab
 #TODO
 
 1. Only depends on System and System.Core.
-2. Port to linux.
+2. Port to linux. √
