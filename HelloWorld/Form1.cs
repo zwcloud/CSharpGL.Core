@@ -39,8 +39,10 @@ namespace HelloWorld
 
             //  Create the render context.
             renderContext.Create(OpenGLVersion, Width, Height, 32, null);
-
             renderContext.MakeCurrent();
+
+            string version = CSharpGL.GL.GetString(CSharpGL.GL.GL_VERSION);
+            this.Text = version;
 
             //  Set the most basic OpenGL styles.
             OpenGL.ShadeModel(OpenGL.GL_SMOOTH);
