@@ -95,6 +95,8 @@ namespace HelloWorld
 
             //  Clear the color and depth buffer.
             OpenGL.Clear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT | OpenGL.GL_STENCIL_BUFFER_BIT);
+
+
         }
 
         /// <summary>

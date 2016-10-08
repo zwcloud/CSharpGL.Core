@@ -36,6 +36,9 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.XML" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Enumerations\BeginTransformFeedbackPrimitiveMode.cs" />
@@ -61,18 +64,93 @@
     <Compile Include="Enumerations\TexSubImage2D.cs" />
     <Compile Include="Enumerations\UniformType.cs" />
     <Compile Include="GL.cs" />
+    <Compile Include="GLM\glm_camera.cs" />
+    <Compile Include="GLM\glm_inverse.cs" />
+    <Compile Include="GLM\glm_trigonometric.cs" />
+    <Compile Include="GLM\glm_vec.cs" />
+    <Compile Include="GLM\mat2.cs" />
+    <Compile Include="GLM\mat3.cs" />
+    <Compile Include="GLM\mat4.cs" />
+    <Compile Include="GLM\mat4Helper.cs" />
+    <Compile Include="GLM\vec2.cs" />
+    <Compile Include="GLM\vec3.cs" />
+    <Compile Include="GLM\vec4.cs" />
+    <Compile Include="GLM\vecHelper.cs" />
     <Compile Include="GLU_Consts.cs" />
     <Compile Include="GLU_Functions.cs" />
     <Compile Include="GL_Consts.cs" />
     <Compile Include="GL_Extensions.cs" />
     <Compile Include="GL_Functions.cs" />
     <Compile Include="GL_Wrappers.cs" />
+    <Compile Include="Objects\Cameras\Camera.cs" />
+    <Compile Include="Objects\Cameras\Camera2Matrix.cs" />
+    <Compile Include="Objects\Cameras\CameraHelper.cs" />
+    <Compile Include="Objects\Cameras\CameraType.cs" />
+    <Compile Include="Objects\Cameras\IBoundingBox.cs" />
+    <Compile Include="Objects\Cameras\IBoundingBoxHelper.cs" />
+    <Compile Include="Objects\Cameras\ICamera.cs" />
+    <Compile Include="Objects\Cameras\ICameraRotator.cs" />
+    <Compile Include="Objects\Cameras\IOrthoCamera.cs" />
+    <Compile Include="Objects\Cameras\IOrthoViewCamera.cs" />
+    <Compile Include="Objects\Cameras\IPerspectiveCamera.cs" />
+    <Compile Include="Objects\Cameras\IPerspectiveViewCamera.cs" />
+    <Compile Include="Objects\Cameras\IViewCamera.cs" />
+    <Compile Include="Objects\Cameras\LegacyBoundingBox.cs" />
+    <Compile Include="Objects\Cameras\MouseWheelHelper.cs" />
+    <Compile Include="Objects\Cameras\SatelliteRotator.cs" />
+    <Compile Include="Objects\Cameras\ViewTypes.cs" />
+    <Compile Include="Objects\GLColor.cs" />
+    <Compile Include="Objects\IMVP.cs" />
+    <Compile Include="Objects\IMVPHelper.cs" />
+    <Compile Include="Objects\IRenderable.cs" />
+    <Compile Include="Objects\RenderContexts\DIBSection.cs" />
+    <Compile Include="Objects\RenderContexts\FBORenderContext.cs" />
+    <Compile Include="Objects\RenderContexts\GLVersion.cs" />
+    <Compile Include="Objects\RenderContexts\HiddenWindowRenderContext.cs" />
+    <Compile Include="Objects\RenderContexts\RenderContext.cs" />
+    <Compile Include="Objects\RenderContexts\VersionAttribute.cs" />
+    <Compile Include="Objects\RenderEventArgs.cs" />
+    <Compile Include="Objects\RenderModes.cs" />
+    <Compile Include="Objects\SceneElementBase.cs" />
+    <Compile Include="Objects\SceneElements\AxisColorBuffer.cs" />
+    <Compile Include="Objects\SceneElements\AxisElement.cs" />
+    <Compile Include="Objects\SceneElements\AxisElement2.cs" />
+    <Compile Include="Objects\SceneElements\AxisIndexBuffer.cs" />
+    <Compile Include="Objects\SceneElements\AxisPositionBuffer.cs" />
+    <Compile Include="Objects\Shaders\Shader.cs" />
+    <Compile Include="Objects\Shaders\ShaderCompilationException.cs" />
+    <Compile Include="Objects\Shaders\ShaderProgram.cs" />
+    <Compile Include="Objects\Texture2D.cs" />
+    <Compile Include="Objects\VertexBuffers\BufferRenderer.cs" />
+    <Compile Include="Objects\VertexBuffers\IndexBuffer.cs" />
+    <Compile Include="Objects\VertexBuffers\IndexBufferBase.cs" />
+    <Compile Include="Objects\VertexBuffers\IndexBufferBaseRenderer.cs" />
+    <Compile Include="Objects\VertexBuffers\IndexBufferRenderer.cs" />
+    <Compile Include="Objects\VertexBuffers\PropertyBuffer.cs" />
+    <Compile Include="Objects\VertexBuffers\PropertyBufferRenderer.cs" />
+    <Compile Include="Objects\VertexBuffers\VertexArrayObject.cs" />
+    <Compile Include="Objects\VertexBuffers\VertexBuffer.cs" />
+    <Compile Include="Objects\VertexBuffers\ZeroIndexBuffer.cs" />
+    <Compile Include="Objects\VertexBuffers\ZeroIndexBufferRenderer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Enumerations\ShadeModel.cs" />
+    <Compile Include="Utilities\ArrayHelper.cs" />
+    <Compile Include="Utilities\ByteArrayHelper.cs" />
+    <Compile Include="Utilities\CurrentOS.cs" />
+    <Compile Include="Utilities\DumpTreeToText.cs" />
+    <Compile Include="Utilities\FloatHelper.cs" />
+    <Compile Include="Utilities\ITreeNode.cs" />
+    <Compile Include="Utilities\ManifestResourceLoader.cs" />
+    <Compile Include="Utilities\StructHelper.cs" />
+    <Compile Include="Utilities\UnmanagedArray.cs" />
+    <Compile Include="Utilities\UnmanagedArrayFastAccessHelper.cs" />
+    <Compile Include="Utilities\UnmanagedArrayHelper.cs" />
     <Compile Include="Win32API\BITMAPINFO.cs" />
     <Compile Include="Win32API\ClassStyles.cs" />
     <Compile Include="Win32API\Delegates.cs" />
     <Compile Include="Win32API\SetWindowPosFlags.cs" />
+    <Content Include="GLM\readme.txt" />
+    <Content Include="Objects\readme.txt" />
     <Content Include="readme.txt" />
     <Compile Include="Win32API\WindowStyles.cs" />
     <Compile Include="Win32API\PIXELFORMATDESCRIPTOR.cs" />
@@ -81,17 +159,18 @@
     <Compile Include="Win32API\Win32.cs" />
     <Compile Include="Win32API\WindowStylesEx.cs" />
     <Compile Include="Win32API\WNDCLASSEX.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Utilities\Utilities.csproj">
-      <Project>{f1b5534a-134c-4fa6-b172-a2f20d8f96ed}</Project>
-      <Name>Utilities</Name>
-    </ProjectReference>
+    <Content Include="Utilities\readme.txt" />
   </ItemGroup>
   <ItemGroup>
     <None Include="CSharpGL.dll.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <EmbeddedResource Include="Objects\SceneElements\AxisElement.frag" />
+    <EmbeddedResource Include="Objects\SceneElements\AxisElement.vert" />
+    <EmbeddedResource Include="Objects\SceneElements\AxisElement2.frag" />
+    <EmbeddedResource Include="Objects\SceneElements\AxisElement2.vert" />
+    <None Include="Objects\VertexBuffers\BufferRenderers.cd" />
+    <None Include="Objects\VertexBuffers\VertexBuffers.cd" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
