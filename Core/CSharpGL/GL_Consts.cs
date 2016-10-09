@@ -168,6 +168,8 @@ namespace CSharpGL
         public const uint GL_STACK_OVERFLOW = 0x0503;
         public const uint GL_STACK_UNDERFLOW = 0x0504;
         public const uint GL_OUT_OF_MEMORY = 0x0505;
+        public const uint GL_INVALID_FRAMEBUFFER_OPERATION = 0x0506;
+        public const uint GL_CONTEXT_LOST = 0x0507;
 
         //   FeedBackMode
         public const uint GL_2D = 0x0600;
