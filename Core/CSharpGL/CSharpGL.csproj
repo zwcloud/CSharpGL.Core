@@ -182,7 +182,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="CSharpGL.dll.config">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <EmbeddedResource Include="Objects\SceneElements\AxisElement.frag" />
     <EmbeddedResource Include="Objects\SceneElements\AxisElement.vert" />
