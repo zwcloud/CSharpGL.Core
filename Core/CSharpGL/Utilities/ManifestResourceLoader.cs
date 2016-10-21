@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Drawing;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 
@@ -57,27 +54,16 @@ namespace System
 
         private static void GetLocation(string textFileName, out Assembly executingAssembly, out string location)
         {
-            StackTrace stack = new StackTrace();
-            StackFrame frame = stack.GetFrame(2);
-            MethodBase method = frame.GetMethod();
-            Type type = method.ReflectedType;
-            executingAssembly = type.Assembly; //Assembly.GetExecutingAssembly();
-            string pathToDots = textFileName.Replace("\\", ".");
-            location = string.Format("{0}.{1}", executingAssembly.GetName().Name, pathToDots);
-        }
+            //StackTrace stack = new StackTrace();
+            //StackFrame frame = stack.GetFrame(2);
+            //MethodBase method = frame.GetMethod();
+            //Type type = method.ReflectedType;
+            //executingAssembly = type.Assembly; //Assembly.GetExecutingAssembly();
+            //string pathToDots = textFileName.Replace("\\", ".");
+            //location = string.Format("{0}.{1}", executingAssembly.GetName().Name, pathToDots);
 
-        public static Bitmap LoadBitmap(string filename)
-        {
-            Assembly executingAssembly;
-            string location;
-            GetLocation(filename, out executingAssembly, out location);
-
-            using (Stream stream = executingAssembly.GetManifestResourceStream(location))
-            {
-                Image image = Bitmap.FromStream(stream);
-                Bitmap bmp = image as Bitmap;
-                return bmp;
-            }
+            executingAssembly = null;
+            location = "TODO";
         }
     }
 }

@@ -27,20 +27,9 @@ namespace CSharpGL.Objects
             this.r = r; this.g = g; this.b = b; this.a = a;
         }
 
-        public static implicit operator System.Drawing.Color(GLColor color)
-        {
-            return System.Drawing.Color.FromArgb((int)(color.a * 255), (int)(color.r * 255.0f),
-                (int)(color.g * 255.0f), (int)(color.b * 255.0f));
-        }
         public static implicit operator float[](GLColor color)
         {
             return new float[] { color.r, color.g, color.b, color.a };
-        }
-        public static implicit operator GLColor(System.Drawing.Color color)
-        {
-            GLColor col = new GLColor();
-            col.ColorNET = color;
-            return col;
         }
 
         public virtual void Set(float r, float g, float b)
@@ -81,29 +70,6 @@ namespace CSharpGL.Objects
         protected float g = 0.0f;
         protected float b = 0.0f;
         protected float a = 0.0f;
-
-        /// <summary>
-        /// This property allows you to access the color as if it was a .NET
-        /// color.
-        /// </summary>
-        [XmlIgnore]
-        public System.Drawing.Color ColorNET
-        {
-            get
-            {
-                System.Drawing.Color col = System.Drawing.Color.FromArgb((int)(r * 255.0f),
-                    (int)(g * 255.0f), (int)(b * 255.0f));
-                return col;
-            }
-            set
-            {
-                System.Drawing.Color col = value;
-                r = (float)col.R / 255.0f;
-                g = (float)col.G / 255.0f;
-                b = (float)col.B / 255.0f;
-                a = (float)col.A / 255.0f;
-            }
-        }
 
         /// <summary>
         /// This property accesses the color as an opengl value.

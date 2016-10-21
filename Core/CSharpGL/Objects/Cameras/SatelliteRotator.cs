@@ -11,8 +11,8 @@ namespace CSharpGL.Objects.Cameras
     /// </summary>
     public class SatelliteRotator : ICameraRotator
     {
-        private Point downPosition = new Point();
-        private Size bound = new Size();
+        private vec2 downPosition = new vec2();
+        private vec2 bound = new vec2();
 
         private bool mouseDownFlag = false;
         /// <summary>
@@ -85,8 +85,8 @@ namespace CSharpGL.Objects.Cameras
                 vec3 back = this.back;
                 vec3 right = this.right;
                 vec3 up = this.up;
-                Size bound = this.bound;
-                Point downPosition = this.downPosition;
+                vec2 bound = this.bound;
+                vec2 downPosition = this.downPosition;
                 {
                     float deltaX = -horizontalRotationFactor * (x - downPosition.X) / bound.Width;
                     float cos = (float)Math.Cos(deltaX);

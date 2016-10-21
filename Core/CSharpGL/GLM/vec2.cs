@@ -125,5 +125,21 @@ namespace GLM
         {
             return string.Format("{0:0.00},{1:0.00}", x, y);
         }
+
+        #region used as rect
+
+        public float X { get { return x; } set { x = value; } }
+
+        public float Y { get { return y; } set { y = value; } }
+
+        #endregion
+
+        #region used as size
+
+        public float Width { get { return x; } set { x = value; } }
+
+        public float Height { get { return y; } set { y = value; } }
+
+        #endregion
     }
 }

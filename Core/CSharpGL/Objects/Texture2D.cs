@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Drawing.Imaging;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Runtime.InteropServices;
 
 namespace CSharpGL.Objects
 {
@@ -21,17 +16,17 @@ namespace CSharpGL.Objects
         /// </summary>
         public uint Name { get { return this.texture[0]; } }
 
-        public void Initialize(System.Drawing.Bitmap bitmap)
+        public void Initialize(int width, int height, int format, int pixelType, byte[] data)
         {
             if (!this.initialized)
             {
-                DoInitialize(bitmap);
+                DoInitialize(width, height, format, pixelType, data);
 
                 this.initialized = true;
             }
         }
 
-        private void DoInitialize(System.Drawing.Bitmap bitmap)
+        private void DoInitialize(int width, int height, int format, int pixelType, byte[] data)
         {
             // get texture's size.
             int targetTextureWidth;
@@ -47,12 +42,12 @@ namespace CSharpGL.Objects
                 targetTextureWidth = textureMaxSize[0];
                 for (int size = 1; size <= textureMaxSize[0]; size *= 2)
                 {
-                    if (bitmap.Width < size)
+                    if (width < size)
                     {
                         targetTextureWidth = size / 2;
                         break;
                     }
-                    if (bitmap.Width == size)
+                    if (width == size)
                     {
                         targetTextureWidth = size;
                         break;
@@ -61,12 +56,12 @@ namespace CSharpGL.Objects
 
                 for (int size = 1; size <= textureMaxSize[0]; size *= 2)
                 {
-                    if (bitmap.Height < size)
+                    if (height < size)
                     {
                         targetTextureHeight = size / 2;
                         break;
                     }
-                    if (bitmap.Height == size)
+                    if (height == size)
                     {
                         targetTextureHeight = size;
                         break;
@@ -74,41 +69,24 @@ namespace CSharpGL.Objects
                 }
             }
 
-            // scale bitmap to right size.
-            System.Drawing.Bitmap targetImage = bitmap;
-            if (bitmap.Width != targetTextureWidth || bitmap.Height != targetTextureWidth)
+            // TODO handle texture data whose size isn't power of 2.
+            if (width != targetTextureWidth || height != targetTextureWidth)
             {
-                //  Resize the image.
-                targetImage = (System.Drawing.Bitmap)bitmap.GetThumbnailImage(targetTextureWidth, targetTextureWidth, null, IntPtr.Zero);
+                throw new NotSupportedException("The size isn't power of 2.");
             }
 
             // generate texture.
             {
-                //  Lock the image bits (so that we can pass them to OGL).
-                BitmapData bitmapData = targetImage.LockBits(new Rectangle(0, 0, targetImage.Width, targetImage.Height),
-                    ImageLockMode.ReadOnly, PixelFormat.Format32bppArgb);
                 //GL.ActiveTexture(GL.GL_TEXTURE0);
                 GL.GenTextures(1, texture);
                 GL.BindTexture(GL.GL_TEXTURE_2D, texture[0]);
                 GL.TexImage2D(GL.GL_TEXTURE_2D, 0, (int)GL.GL_RGBA,
-                    targetImage.Width, targetImage.Height, 0, GL.GL_BGRA, GL.GL_UNSIGNED_BYTE,
-                    bitmapData.Scan0);
-                //  Unlock the image.
-                targetImage.UnlockBits(bitmapData);
-                /* We require 1 byte alignment when uploading texture data */
-                //GL.PixelStorei(GL.GL_UNPACK_ALIGNMENT, 1);
-                /* Clamping to edges is important to prevent artifacts when scaling */
+                    width, height, 0, GL.GL_BGRA, GL.GL_UNSIGNED_BYTE,
+                    Marshal.UnsafeAddrOfPinnedArrayElement(data, 0));
                 GL.TexParameteri(GL.GL_TEXTURE_2D, GL.GL_TEXTURE_WRAP_S, (int)GL.GL_CLAMP_TO_EDGE);
                 GL.TexParameteri(GL.GL_TEXTURE_2D, GL.GL_TEXTURE_WRAP_T, (int)GL.GL_CLAMP_TO_EDGE);
-                /* Linear filtering usually looks best for text */
                 GL.TexParameteri(GL.GL_TEXTURE_2D, GL.GL_TEXTURE_MIN_FILTER, (int)GL.GL_LINEAR);
                 GL.TexParameteri(GL.GL_TEXTURE_2D, GL.GL_TEXTURE_MAG_FILTER, (int)GL.GL_LINEAR);
-            }
-
-            // release temp image.
-            if (targetImage != bitmap)
-            {
-                targetImage.Dispose();
             }
         }
 

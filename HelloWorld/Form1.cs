@@ -23,15 +23,8 @@ namespace HelloWorld
         }
 
         private readonly Stopwatch stopWatch = new Stopwatch();
-        /// <summary>
-        /// 
-        /// </summary>
         protected RenderContext renderContext;
 
-
-        /// <summary>
-        /// 
-        /// </summary>
         protected void CreateRenderContext()
         {
             // Initialises OpenGL.
@@ -52,10 +45,7 @@ namespace HelloWorld
             OpenGL.Hint(OpenGL.GL_PERSPECTIVE_CORRECTION_HINT, OpenGL.GL_NICEST);
             ResizeGL(this.Width, this.Height);
         }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="e"></param>
+
         protected override void OnPaint(PaintEventArgs e)
         {
             if (renderContext == null)
@@ -93,18 +83,11 @@ namespace HelloWorld
         {
             // Sky blue fore background.
             OpenGL.ClearColor(0x87 / 255.0f, 0xce / 255.0f, 0xeb / 255.0f, 0xff / 255.0f);
-            //OpenGL.ClearColor(0, 0, 0, 0);
 
             //  Clear the color and depth buffer.
             OpenGL.Clear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT | OpenGL.GL_STENCIL_BUFFER_BIT);
-
-
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="e"></param>
         protected override void OnPaintBackground(PaintEventArgs e)
         {
             //base.OnPaintBackground(e);
@@ -115,10 +98,7 @@ namespace HelloWorld
             //this.renderingRequired = true;
             this.Invalidate();
         }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="e"></param>
+
         protected override void OnSizeChanged(EventArgs e)
         {
             base.OnSizeChanged(e);
@@ -137,10 +117,6 @@ namespace HelloWorld
             }
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="e"></param>
         protected override void OnHandleDestroyed(EventArgs e)
         {
             DestroyRenderContext();
@@ -157,9 +133,6 @@ namespace HelloWorld
             }
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
         public double FPS { get; private set; }
 
         /// <summary>
@@ -193,9 +166,7 @@ namespace HelloWorld
         /// </summary>
         public event EventHandler<PaintEventArgs> OpenGLDraw;
 
-
         ////  Use the 'look at' helper function to position and aim the camera.
-        //OpenGL.gluLookAt(-2, 2, -2, 0, 0, 0, 0, 1, 0);
         static readonly mat4 viewMatrix = glm.lookAt(new vec3(0, 0, 2), new vec3(0, 0, 0), new vec3(0, 1, 0));
         public static void ResizeGL(double width, double height)
         {
