@@ -1,6 +1,5 @@
 ﻿using GLM;
 using System;
-using System.Drawing;
 
 
 namespace CSharpGL.Objects.Cameras

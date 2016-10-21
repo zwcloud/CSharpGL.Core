@@ -1,18 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Serialization;
-
-namespace CSharpGL.Objects
+﻿namespace CSharpGL.Objects
 {
     /// <summary>
     /// This class provides a means of working with standard and opengl colours.
     /// Use the ColorNet and ColorGL properties to set or access the colour in either
     /// mode.
     /// </summary>
-    [Serializable()]
     public class GLColor
     {
         /// <summary>
@@ -74,7 +66,6 @@ namespace CSharpGL.Objects
         /// <summary>
         /// This property accesses the color as an opengl value.
         /// </summary>
-        [XmlIgnore]
         public float[] ColorGL
         {
             get { return new float[] { r, g, b, a }; }
@@ -93,7 +84,6 @@ namespace CSharpGL.Objects
         /// <value>
         /// The R.
         /// </value>
-        [XmlAttribute]
         public float R
         {
             get { return r; }
@@ -106,7 +96,6 @@ namespace CSharpGL.Objects
         /// <value>
         /// The G.
         /// </value>
-        [XmlAttribute]
         public float G
         {
             get { return g; }
@@ -119,7 +108,6 @@ namespace CSharpGL.Objects
         /// <value>
         /// The B.
         /// </value>
-        [XmlAttribute]
         public float B
         {
             get { return b; }
@@ -132,7 +120,6 @@ namespace CSharpGL.Objects
         /// <value>
         /// The A.
         /// </value>
-        [XmlAttribute]
         public float A
         {
             get { return a; }

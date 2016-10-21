@@ -28,7 +28,7 @@ namespace System
         /// </summary>
         /// <param name="count"></param>
         public UnmanagedArray(int count)
-            : base(count, Marshal.SizeOf(typeof(T)))
+            : base(count, Marshal.SizeOf<T>())
         {
             thisTypeAllocatedCount++;
         }
@@ -47,7 +47,7 @@ namespace System
                     throw new IndexOutOfRangeException("index of UnmanagedArray is out of range");
 
                 var pItem = this.Header + (index * elementSize);
-                var obj = Marshal.PtrToStructure(pItem, typeof(T));
+                var obj = Marshal.PtrToStructure<T>(pItem);
                 T result = (T)obj;
                 //T result = Marshal.PtrToStructure<T>(pItem);// works in .net 4.5.1
                 return result;

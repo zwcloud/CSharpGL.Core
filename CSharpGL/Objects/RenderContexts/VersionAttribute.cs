@@ -51,7 +51,7 @@ namespace CSharpGL.Objects.RenderContexts
             string str = enumeration.ToString();
             MemberInfo[] members = type.GetMember(str);
             MemberInfo member = members.Single();
-            object[] objs = member.GetCustomAttributes(typeof(VersionAttribute), false);
+            object[] objs = member.GetCustomAttributes(typeof(VersionAttribute), false).ToArray();
             IEnumerable<VersionAttribute> attributes = objs.OfType<VersionAttribute>();
             VersionAttribute firstOrDefault = attributes.FirstOrDefault();
             return firstOrDefault;

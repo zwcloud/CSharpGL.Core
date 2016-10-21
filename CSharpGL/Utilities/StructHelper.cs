@@ -19,7 +19,7 @@ namespace System
         {
             T result;
 
-            int size = Marshal.SizeOf(typeof(T));
+            int size = Marshal.SizeOf<T>();
             byte[] bytes = br.ReadBytes(size);
             bytes.GetStruct(out result);
 

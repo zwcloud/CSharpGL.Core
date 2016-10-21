@@ -39,7 +39,7 @@ namespace System
         {
             GCHandle pinned = GCHandle.Alloc(bytes, GCHandleType.Pinned);
             IntPtr addr = Marshal.UnsafeAddrOfPinnedArrayElement(bytes, startIndex);
-            result = (T)Marshal.PtrToStructure(addr, typeof(T));
+            result = Marshal.PtrToStructure<T>(addr);
             pinned.Free();
             ////another way to do this
             //var type = typeof(T);

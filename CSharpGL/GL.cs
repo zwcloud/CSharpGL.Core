@@ -18,7 +18,7 @@ namespace CSharpGL
         // 请注意，采用这种方式，JIT 编译器只会重新使用实际代码。实例仍然按照它们离开托管堆的大小分配空间，并且没有强制类型转换。
         // 
         // http://blog.csdn.net/yjjm1990/article/details/9498923
-        // CLR 为所有类型参数为“ 引用类型” 的泛型类型产生同一份代码；但如果类型参数为“ 值类型” ，对每一个不同的“ 值类型” ，CLR将为其产生一份独立的代码
+        // CLR 为所有类型参数为“ 引用类型” 的泛型类型产生同一份代码；但如果类型参数为“值类型” ，对每一个不同的“值类型” ，CLR将为其产生一份独立的代码
         // 
         /// <summary>
         /// Returns a delegate for an extension function. This delegate  can be called to execute the extension function.
@@ -50,7 +50,7 @@ namespace CSharpGL
                         pointer = proc.ToInt32();
                         if(-1 <= pointer && pointer <= 3)
                         {
-                            throw new Exception("Extension function " + name + " not supported");
+                            throw new NotSupportedException("Extension function " + name + " not supported.");
                         }
                     }
                 }
@@ -59,8 +59,12 @@ namespace CSharpGL
                     proc = glxGetProcAddress(name);
                     if(proc == IntPtr.Zero)
                     {
-                        throw new Exception("Extension function " + name + " not supported");
+                        throw new NotSupportedException("Extension function " + name + " not supported.");
                     }
+                }
+                else if(CurrentOS.IsMac)
+                {
+                    throw new NotImplementedException("Binding for macOS hasn't not implemented yet.");
                 }
                 else
                 {

@@ -1,7 +1,4 @@
 ﻿using GLM;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 
 namespace CSharpGL.Objects.Cameras
 {
@@ -115,7 +112,6 @@ namespace CSharpGL.Objects.Cameras
         /// <value>
         /// The target.
         /// </value>
-        [Description("The target of the camera (the point it's looking at)"), Category("Camera")]
         public vec3 Target { get; set; }
 
         /// <summary>
@@ -124,7 +120,6 @@ namespace CSharpGL.Objects.Cameras
         /// <value>
         /// Up vector.
         /// </value>
-        [Description("The up direction, relative to camera. (Controls tilt)."), Category("Camera")]
         public vec3 UpVector { get; set; }
 
         /// <summary>
@@ -149,7 +144,6 @@ namespace CSharpGL.Objects.Cameras
         /// <value>
         /// The position.
         /// </value>
-        [Description("The position of the camera"), Category("Camera")]
         public vec3 Position
         {
             get { return position; }
