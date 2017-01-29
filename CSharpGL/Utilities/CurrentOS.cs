@@ -2,10 +2,7 @@
 
 namespace System
 {
-    //https://blez.wordpress.com/2012/09/17/determine-os-with-netmono/
-    // CurrentOS Class by blez
     // Detects the current OS (Windows, Linux, MacOS)
-    //
     public static class CurrentOS
     {
         static CurrentOS()

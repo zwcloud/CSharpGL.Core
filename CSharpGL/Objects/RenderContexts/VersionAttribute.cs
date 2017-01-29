@@ -49,7 +49,7 @@ namespace CSharpGL.Objects.RenderContexts
             //  Get the attribute from the enumeration value (if it exists).
             Type type = enumeration.GetType();
             string str = enumeration.ToString();
-            MemberInfo[] members = type.GetMember(str);
+            MemberInfo[] members = type.GetTypeInfo().GetMember(str);
             MemberInfo member = members.Single();
             object[] objs = member.GetCustomAttributes(typeof(VersionAttribute), false).ToArray();
             IEnumerable<VersionAttribute> attributes = objs.OfType<VersionAttribute>();
